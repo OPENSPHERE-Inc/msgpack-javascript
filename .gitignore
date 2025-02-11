@@ -20,3 +20,6 @@ flamegraph.html
 
 # jsfuzz
 corpus/
+
+.idea
+*.tgz

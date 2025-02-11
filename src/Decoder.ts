@@ -214,9 +214,9 @@ export class Decoder<ContextType = undefined> {
   private readonly keyDecoder: KeyDecoder | null;
 
   private totalPos = 0;
-  private pos = 0;
+  protected pos = 0;
 
-  private view = EMPTY_VIEW;
+  protected view = EMPTY_VIEW;
   private bytes = EMPTY_BYTES;
   private headByte = HEAD_BYTE_REQUIRED;
   private readonly stack = new StackPool();
@@ -788,73 +788,73 @@ export class Decoder<ContextType = undefined> {
     return this.view.getUint32(this.pos);
   }
 
-  private readU8(): number {
+  protected readU8() {
     const value = this.view.getUint8(this.pos);
     this.pos++;
     return value;
   }
 
-  private readI8(): number {
+  protected readI8() {
     const value = this.view.getInt8(this.pos);
     this.pos++;
     return value;
   }
 
-  private readU16(): number {
+  protected readU16() {
     const value = this.view.getUint16(this.pos);
     this.pos += 2;
     return value;
   }
 
-  private readI16(): number {
+  protected readI16() {
     const value = this.view.getInt16(this.pos);
     this.pos += 2;
     return value;
   }
 
-  private readU32(): number {
+  protected readU32() {
     const value = this.view.getUint32(this.pos);
     this.pos += 4;
     return value;
   }
 
-  private readI32(): number {
+  protected readI32() {
     const value = this.view.getInt32(this.pos);
     this.pos += 4;
     return value;
   }
 
-  private readU64(): number {
+  protected readU64() {
     const value = getUint64(this.view, this.pos);
     this.pos += 8;
     return value;
   }
 
-  private readI64(): number {
+  protected readI64() {
     const value = getInt64(this.view, this.pos);
     this.pos += 8;
     return value;
   }
 
-  private readU64AsBigInt(): bigint {
+  protected readU64AsBigInt(): bigint {
     const value = this.view.getBigUint64(this.pos);
     this.pos += 8;
     return value;
   }
 
-  private readI64AsBigInt(): bigint {
+  protected readI64AsBigInt(): bigint {
     const value = this.view.getBigInt64(this.pos);
     this.pos += 8;
     return value;
   }
 
-  private readF32() {
+  protected readF32(): unknown {
     const value = this.view.getFloat32(this.pos);
     this.pos += 4;
     return value;
   }
 
-  private readF64() {
+  protected readF64(): unknown {
     const value = this.view.getFloat64(this.pos);
     this.pos += 8;
     return value;
